@@ -24,7 +24,7 @@ end
 switch = 0
 
 
-File.open input_file do |file|
+File.open(input_file, 'r:utf-8') do |file|
     file.each_line do |line|
         if line == "\n" then
             switch += 1
