@@ -1,3 +1,7 @@
+# 概要
+
+アドワーズへの広告出稿の入力を手助けします。
+
 # INPUT
 
 テキストファイルに以下の形式で文章を入力していきます。
@@ -36,13 +40,15 @@ http://jump.url/
 
 `gen.rb`のディレクトリへ移動し
 
-```
-$ ruby gen.rb <input file name>
+```bash
+$ ruby gen.rb inputFileName
 ```
 
 # OUTPUT
 
 ## output A
+
+タブで区切られたファイル(TSV)で出力されます。
 
 ```tsv
 Campaign	Ad Group	Keyword
