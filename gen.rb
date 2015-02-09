@@ -16,7 +16,7 @@ raise "読み込むファイルを指定してください。 例）ruby gen.rb 
 path = ARGV.shift
 input_file = File.join(File.dirname(path), path)
 
-keys = [:campain_name, :adgroup, :words_a, :words_b, :title, :sentence1, :sentence2, :disp_url, :jump_url]
+keys = [:campain_name, :words_a, :words_b, :title, :sentence1, :sentence2, :disp_url, :jump_url]
 inputs = {}
 keys.each do |key|
     inputs[key] = []
@@ -36,7 +36,6 @@ end
 
 # わかりやすいように切り出し大根
 campain_name = inputs[:campain_name][0]
-adgroup      = inputs[:adgroup][0]
 title        = inputs[:title][0]
 sentence1    = inputs[:sentence1][0]
 sentence2    = inputs[:sentence2][0]
@@ -50,6 +49,7 @@ sets = inputs[:words_a].product(inputs[:words_b]).collect { |set| set.join("　"
 # ファイルA出力
 output_collection = [["Campaign", "Ad Group", "Keyword"]]
 sets.each do |set|
+    adgroup = set.split("　")[0]
     tmp = [].push(campain_name).push(adgroup).push(set)
     output_collection.push( tmp )
 end
@@ -59,6 +59,7 @@ output_collection.to_tsv "output1.tsv"
 output_collection = [["Campaign", "Ad Group", "Headline", "Description Line 1", "Description Line 2", "Display URL", "Destination URL", "Device Preference", "Ad Status"]]
 inputs[:words_a].each do |word|
     # ＃ <= replace target
+    adgroup = word
     tmp = [campain_name, adgroup, title, sentence1.gsub(/＃/, word), sentence2.gsub(/＃/, word), disp_url, jump_url]
     output_collection.push( tmp )
 end
