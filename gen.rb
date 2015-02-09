@@ -59,8 +59,10 @@ p output_collection
 output_collection.to_tsv "output1.tsv"
 
 # ファイルB出力
-output_collection = [
-        ["Campaign", "Ad Group", "Headline", "Description Line 1", "Description Line 2", "Display URL", "Destination URL", "Device Preference", "Ad Status"],
-        [campain_name, adgroup, title, sentence1, sentence2, disp_url, jump_url]
-    ]
+output_collection = [["Campaign", "Ad Group", "Headline", "Description Line 1", "Description Line 2", "Display URL", "Destination URL", "Device Preference", "Ad Status"]]
+inputs[:words_a].each do |word|
+    # ＃ <= replace target
+    tmp = [campain_name, adgroup, title, sentence1.gsub(/＃/, word), sentence2.gsub(/＃/, word), disp_url, jump_url]
+    output_collection.push( tmp )
+end
 output_collection.to_tsv "output2.tsv"
