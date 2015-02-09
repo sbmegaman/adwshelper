@@ -30,10 +30,8 @@ File.open input_file do |file|
             switch += 1
             next
         end
-        puts line
         inputs[keys[switch]].push(line.chomp)
     end
-    p inputs
 end
 
 # わかりやすいように切り出し大根
@@ -55,7 +53,6 @@ sets.each do |set|
     tmp = [].push(campain_name).push(adgroup).push(set)
     output_collection.push( tmp )
 end
-p output_collection
 output_collection.to_tsv "output1.tsv"
 
 # ファイルB出力
@@ -66,3 +63,5 @@ inputs[:words_a].each do |word|
     output_collection.push( tmp )
 end
 output_collection.to_tsv "output2.tsv"
+
+p "Generate is Done!"
